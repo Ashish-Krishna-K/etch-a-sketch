@@ -1,0 +1,30 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#container {
+    background-color: gray;
+    height: 900px;
+    width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.columns {
+    border: 1px solid black;
+    display: flex;
+    flex-flow: column wrap;
+    flex: 1;
+    margin: 0px;
+    padding: 0px;
+}
+
+.rows {
+    border: 1px solid black;
+    flex: 1;
+    margin: 0px;
+    padding: 0px;
+}
