@@ -49,8 +49,6 @@ function resetGrid() {
         alert("Please provide a valid input between 1-100");
     } else if (userChoice > 100){
          alert("Please provide a valid input between 1-100");
-    } else if (!Number.isNaN(userChoice)) {
-        alert("Please provide a valid input between 1-100");
     } else { createGrid(userChoice) };
 };
 
