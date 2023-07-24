@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="script.js" defer></script>
     <title>Etch-a-sketch</title>
 </head>
+
 <body>
     <header>
         <h1>ETCH-A-SKETCH</h1>
@@ -15,12 +17,12 @@
         <section class="controls">
             <input type="color" name="color" id="color">
             <div class="mode-selection">
-                <button type="button" class="single-color">Same Color</button>
-                <button type="button" class="random-color">Random Color</button>
-                <button type="button" class="eraser">Eraser</button>
-                <button type="button" class="clear">Clear</button>
+                <button type="button" class="single-color" value="same">Same Color</button>
+                <button type="button" class="random-color" value="random">Random Color</button>
+                <button type="button" class="eraser" value="eraser">Eraser</button>
+                <button type="button" class="clear" value="clear">Clear</button>
             </div>
-            <input type="range" name="grid-size" id="grid-size">
+            <input type="range" name="grid-size" id="grid-size" min="4" max="64">
         </section>
         <div class="container"></div>
     </main>
@@ -28,4 +30,5 @@
         <p>Project by Ashish-Krishna-K</p>
     </footer>
 </body>
+
 </html>
