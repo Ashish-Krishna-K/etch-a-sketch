@@ -61,3 +61,5 @@ const changeColor = (e:MouseEvent) => {
 clearBtn.addEventListener('click', clearGrid);
 
 gridSizeSelector.addEventListener('input', changeGridSize);
+
+generateGrid(gridSize);
