@@ -1,0 +1,23 @@
+.container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid black;
+}
+
+.container div {
+    margin: 0;
+    padding: 0;
+}
+
+.column {
+    outline: 1px solid black;
+    height: 100%;
+    display: flex;
+}
+
+.grid-cell {
+    outline: 1px solid black;
+    width: 100%;
+}
