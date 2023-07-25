@@ -14,9 +14,6 @@ var fillMode = 'same';
 var generateGrid = function (gridSize) {
     // First clear all existing elements inside container
     document.querySelectorAll('div.column').forEach(function (div) { return div.remove(); });
-    // Let's display the current value of gridSize range input to the user
-    if (gridSizeDisplay !== null)
-        gridSizeDisplay.textContent = "".concat(gridSize, " X ").concat(gridSize);
     // We'll use nested loops, the outer loop will create columns and inner loop will create 
     // individual cell inside the column.
     for (var i = 0; i < gridSize; i++) {
@@ -61,6 +58,9 @@ var clearGrid = function () {
 // Create a function that changes the default value of gridSize based on user input
 // Had to use function declaration to preserve the this context.
 function changeGridSize(ev) {
+    // Let's display the current value of gridSize range input to the user
+    if (gridSizeDisplay !== null)
+        gridSizeDisplay.textContent = "".concat(this.value, " X ").concat(this.value);
     generateGrid(Number(this.value));
 }
 // Create a function that changes the color of the grid cell when hovered

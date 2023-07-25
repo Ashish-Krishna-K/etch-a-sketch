@@ -16,8 +16,6 @@ let fillMode = 'same';
 const generateGrid = (gridSize:number) => {
     // First clear all existing elements inside container
     document.querySelectorAll('div.column').forEach(div => div.remove());
-    // Let's display the current value of gridSize range input to the user
-    if (gridSizeDisplay !== null) gridSizeDisplay.textContent = `${gridSize} X ${gridSize}`;
     // We'll use nested loops, the outer loop will create columns and inner loop will create 
     // individual cell inside the column.
     for (let i = 0; i < gridSize; i ++) {
@@ -66,6 +64,8 @@ const clearGrid = () => {
 // Create a function that changes the default value of gridSize based on user input
 // Had to use function declaration to preserve the this context.
 function changeGridSize (this: HTMLInputElement, ev:Event) {
+    // Let's display the current value of gridSize range input to the user
+    if (gridSizeDisplay !== null) gridSizeDisplay.textContent = `${this.value} X ${this.value}`;
     generateGrid(Number(this.value));
 }
 
