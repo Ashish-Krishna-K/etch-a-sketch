@@ -6,25 +6,35 @@ const randomColorBtn = document.querySelector('button.random-color') as HTMLInpu
 const eraserBtn = document.querySelector('button.eraser') as HTMLInputElement;
 const clearBtn = document.querySelector('button.clear') as HTMLInputElement;
 const gridSizeSelector = document.querySelector('input#grid-size') as HTMLInputElement;
+const gridSizeDisplay = document.querySelector('span.grid-size-display');
+
 // Create a variable for holding the fill mode
 let fillMode = 'same';
-let gridSize = 16;
+
 // Create a function for creating the grid inside the container
 const generateGrid = (gridSize:number) => {
     // First clear all existing elements inside container
-    container?.childNodes.forEach(child => child.remove());
-    // The function takes an input which specifies the grid size
-    // then it creates a loop with gridSize number of iterations
-    // In each iteration it creates a div and appends it to container div.
-    const totalCells = gridSize * gridSize;
-    for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement('div');
-        cell.addEventListener('mouseleave', changeColor);
-        container?.appendChild(cell);
+    document.querySelectorAll('div.column').forEach(div => div.remove());
+    // Let's display the current value of gridSize range input to the user
+    if (gridSizeDisplay !== null) gridSizeDisplay.textContent = `${gridSize} X ${gridSize}`;
+    // We'll use nested loops, the outer loop will create columns and inner loop will create 
+    // individual cell inside the column.
+    for (let i = 0; i < gridSize; i ++) {
+        const column = document.createElement('div');
+        column.classList.add('column');
+        for (let j = 0; j < gridSize; j++) {
+            const cell = document.createElement('div');
+            cell.classList.add('grid-cell');
+            cell.addEventListener('mouseenter', changeColor);
+            column?.appendChild(cell);
+        }
+        container?.appendChild(column);
     }
 }
+
 // Create a helper function that generates a random number between 0 to 255;
 const generateRandomNumber = () => Math.floor(Math.random() * 255);
+
 // Create a helper function that returns a string holdging color value 
 // based on the fillMode value
 const generateColorString = () => {
@@ -36,20 +46,22 @@ const generateColorString = () => {
     };
     return '#ffffff'
 }
+
 // Create a function which changes the fillMode value when an
 // appropriate button is clicked
-const changeFillMode = (e:MouseEvent) => {
-    fillMode = (e.target as HTMLInputElement).value;
-}
+const changeFillMode = (e:MouseEvent) => fillMode = (e.target as HTMLInputElement).value;
+
 // Create a function to clear the grid
 const clearGrid = () => {
-    container?.childNodes.forEach(cell => (cell as HTMLElement).style.backgroundColor = '#ffffff')
+    document.querySelectorAll('div.grid-cell').forEach(cell => (cell as HTMLElement).style.backgroundColor = '#ffffff');
 }
+
 // Create a function that changes the default value of gridSize based on user input
+// Had to use function declaration to preserve the this context.
 function changeGridSize (this: HTMLInputElement, ev:Event) {
-    gridSize = Number(this.value);
-    generateGrid(gridSize);
+    generateGrid(Number(this.value));
 }
+
 // Create a function that changes the color of the grid cell when hovered
 const changeColor = (e:MouseEvent) => {
     (e.target as HTMLElement).style.backgroundColor = generateColorString();
@@ -62,4 +74,4 @@ clearBtn.addEventListener('click', clearGrid);
 
 gridSizeSelector.addEventListener('input', changeGridSize);
 
-generateGrid(gridSize);
+generateGrid(16);
