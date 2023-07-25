@@ -7,6 +7,7 @@ const eraserBtn = document.querySelector('button.eraser') as HTMLInputElement;
 const clearBtn = document.querySelector('button.clear') as HTMLInputElement;
 const gridSizeSelector = document.querySelector('input#grid-size') as HTMLInputElement;
 const gridSizeDisplay = document.querySelector('span.grid-size-display');
+const modeBtns = [singleColorBtn, randomColorBtn, eraserBtn];
 
 // Create a variable for holding the fill mode
 let fillMode = 'same';
@@ -51,6 +52,12 @@ const generateColorString = () => {
 // appropriate button is clicked
 const changeFillMode = (e:MouseEvent) => fillMode = (e.target as HTMLInputElement).value;
 
+// Create a helper function that changes the backgroundColor of the mode button selected
+const highlightMode = (e:MouseEvent) => {
+    modeBtns.forEach(btn => btn.classList.remove('selected'));
+    (e.target as HTMLInputElement).classList.add('selected');
+}
+
 // Create a function to clear the grid
 const clearGrid = () => {
     document.querySelectorAll('div.grid-cell').forEach(cell => (cell as HTMLElement).style.backgroundColor = '#ffffff');
@@ -68,7 +75,10 @@ const changeColor = (e:MouseEvent) => {
 };
 
 // Tie up the event handlers to event listeners
-[singleColorBtn, randomColorBtn, eraserBtn].forEach(btn => btn.addEventListener('click', changeFillMode));
+modeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    changeFillMode(e);
+    highlightMode(e);
+}));
 
 clearBtn.addEventListener('click', clearGrid);
 
